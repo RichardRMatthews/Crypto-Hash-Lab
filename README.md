@@ -1,10 +1,10 @@
-# HashLab
+# Crypto Hash Lab
 A python tool for experimenting with diverse cryptographic hash algorithms.
 
-About HashLab
--------------
+About Crypto Hash Lab
+---------------------
 
-HashLab is a small tool which aims to facilitate the usage of cryptographic hash algorithms.
+Crypto-Hash-Lab is a small tool which aims to facilitate the usage of cryptographic hash algorithms.
 It comes with some optional workfactors which can help you to finetune the cost of your cryptographic hashes.
 This information can be usefule when running cryptographic applications on your devide & network or if you want to write a
 cryptographic tool.
