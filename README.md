@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
    <a href="https://github.com/RichardRMatthews/Crypto-Hash-Lab/issues"><img src="https://img.shields.io/github/issues/RichardRMatthews/Crypto-Hash-Lab.svg" alt=""></a>
    <a href="https://github.com/RichardRMatthews/Crypto-Hash-Lab/forks"><img src="	https://img.shields.io/github/forks/RichardRMatthews/Crypto-Hash-Lab.svg" alt=""></a>
    <a href="https://github.com/RichardRMatthews/Crypto-Hash-Lab/stargazers"><img src="https://img.shields.io/github/stars/RichardRMatthews/Crypto-Hash-Lab.svg" alt=""></a>  
