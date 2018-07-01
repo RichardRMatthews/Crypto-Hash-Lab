@@ -1,9 +1,9 @@
 <p align="center">
    
-   <a href="https://github.com/RichardRMatthews/Crypto-Hash-Lab/issues"><img src="https://img.shields.io/github/issues/RichardRMatthews/Crypto-Hash-Lab.svg" alt="version"></a>
-   <a href="https://github.com/RichardRMatthews/Crypto-Hash-Lab/forks"><img src="	https://img.shields.io/github/forks/RichardRMatthews/Crypto-Hash-Lab.svg" alt="issues"></a>
-   <a href="https://github.com/RichardRMatthews/VSHG/stargazers"><img src="https://img.shields.io/github/stars/RichardRMatthews/Crypto-Hash-Lab.svg" alt="forks"></a>   
-   <a href="https://github.com/RichardRMatthews/Crypto-Hash-Lab/blob/master/LICENSE"><img src="https://img.shields.io/github/license/RichardRMatthews/Crypto-Hash-Lab.svg" alt="forks"></a>
+   <a href="https://github.com/RichardRMatthews/Crypto-Hash-Lab/issues"><img src="https://img.shields.io/github/issues/RichardRMatthews/Crypto-Hash-Lab.svg" alt=""></a>
+   <a href="https://github.com/RichardRMatthews/Crypto-Hash-Lab/forks"><img src="	https://img.shields.io/github/forks/RichardRMatthews/Crypto-Hash-Lab.svg" alt=""></a>
+   <a href="https://github.com/RichardRMatthews/VSHG/stargazers"><img src="https://img.shields.io/github/stars/RichardRMatthews/Crypto-Hash-Lab.svg" alt=""></a>   
+   <a href="https://github.com/RichardRMatthews/Crypto-Hash-Lab/blob/master/LICENSE"><img src="https://img.shields.io/github/license/RichardRMatthews/Crypto-Hash-Lab.svg" alt=""></a>
 
        
 </p>
