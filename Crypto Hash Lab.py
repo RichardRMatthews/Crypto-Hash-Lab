@@ -9,7 +9,7 @@ from timeit import default_timer as timer
 import base64
 import argparse
 
-algos = ["md5","sha1","sha256","sha512","sha384","sha224","bcrypt","scrypt","Argon2i","pbkdf2"]
+algos = ["md5","sha1","sha256","sha512","sha384","sha224","bcrypt","scrypt","Argon2i","pbkdf2","ripemd160","whirlpool"]
 
 random128 = base64.b64encode(base64.b64encode(str(random.getrandbits(128))))
 random32 = base64.b64encode(base64.b64encode(str(random.getrandbits(32))))
@@ -46,7 +46,7 @@ if args.salt:
 else:
   saltx = random32
 
-algolist = [ "Argon2i","Bcrypt","Scrypt","pbkdf2","md5","sha1","sha256","sha512","sha384","sha224"]
+algolist = [ "Argon2i","Bcrypt","Scrypt","pbkdf2","md5","sha1","sha256","sha512","sha384","sha224","ripemd160","whirlpool"]
 digest=""
 
 
@@ -141,6 +141,8 @@ def main():
 ##########################################################################
 
 def CryptoArgon2i():
+
+         TimeEstimation()
          start = timer()
          
          global digest
@@ -154,6 +156,8 @@ def CryptoArgon2i():
          
 
 def CryptoScrypt():
+
+         TimeEstimation()
          start = timer()
          
          global digest
@@ -167,6 +171,8 @@ def CryptoScrypt():
 
 
 def CryptoBcrypt():
+
+         TimeEstimation()
          start = timer()
          
          global digest
@@ -180,6 +186,7 @@ def CryptoBcrypt():
 
 def CryptoPbkdf2():
 
+         TimeEstimation()
          start = timer()
 
          global digest
@@ -198,6 +205,7 @@ def CryptoCasual():
         usecounter = args.iter - 1
         global keyx
         if args.algo == "md5":
+            TimeEstimation()
             start = timer()
             for x in range(usecounter):
 
@@ -215,6 +223,7 @@ def CryptoCasual():
 
             
         elif args.algo == "sha1":
+            TimeEstimation()
             start = timer()
             for x in range(usecounter):
 
@@ -232,6 +241,7 @@ def CryptoCasual():
             
 ####
         elif args.algo == "sha256":
+            TimeEstimation()
             start = timer()
             for x in range(usecounter):
 
@@ -249,6 +259,7 @@ def CryptoCasual():
             
 ####
         elif args.algo == "sha512":
+            TimeEstimation()
             start = timer()
             for x in range(usecounter):
 
@@ -266,23 +277,25 @@ def CryptoCasual():
             
 ####            
         elif args.algo == "whirlpool":
+            TimeEstimation()
+            keyx2 = hashlib.new('whirlpool')
             start = timer()
             for x in range(usecounter):
 
-                keyx2 = hashlib.sha512(keyx).digest()
+                keyx2.update(str(keyx))
                 keyx = keyx2
             
             
-            digest = hashlib.sha512(keyx).digest()
+            digest = keyx.digest()
             
             end = timer()
             timex = (end - start)
             print("\n"+ str(timex) + " seconds elapsed for " + str(counter) + " iterations\n")
-            print ("Key was : "+ args.string +"\n")
 
 
 ####            
         elif args.algo == "sha224":
+            TimeEstimation()
             start = timer()
             for x in range(usecounter):
 
@@ -299,6 +312,7 @@ def CryptoCasual():
 
 ####
         elif args.algo == "sha384":
+            TimeEstimation()
             start = timer()
             for x in range(usecounter):
 
@@ -307,6 +321,24 @@ def CryptoCasual():
             
             
             digest = hashlib.sha384(keyx).digest()
+            
+            end = timer()
+            timex = (end - start)
+            print("\n"+ str(timex) + " seconds elapsed for " + str(counter) + " iterations\n")
+
+####
+
+        elif args.algo == "ripemd160":
+            TimeEstimation()
+            keyx2 = hashlib.new('ripemd160')
+            start = timer()
+            for x in range(usecounter):
+
+                keyx2.update(str(keyx))
+                keyx = keyx2
+            
+            
+            digest = keyx.digest()
             
             end = timer()
             timex = (end - start)
@@ -347,5 +379,109 @@ def VCMNS():
   print "\nRunning in Veracrypt none system PIM mode\n"
   args.iter = ( 15000 + int(args.iter) * 1000)
   print args.iter
+
+def TimeEstimation():
+ 
+   global algolist
+   
+   if args.algo == "Argon2i":
+      if args.iter < 1024 and args.parallelism < 16 and args.blocksize < 512 :
+            estimate = " very low < 1 second "
+      elif args.iter <= 1024 and args.parallelism <= 16 and args.blocksize <= 512 :
+            estimate = " low < 4 second      "
+      elif args.iter <= 2048 and args.parallelism <= 16 and args.blocksize <= 512 :
+            estimate = " low < 4 second      "
+      elif args.iter <= 1024 and args.parallelism <= 16 and args.blocksize <= 1024 :
+            estimate = "low < 7 seconds "
+      elif args.iter <= 1024 and args.parallelism <= 16 and args.blocksize <= 2048 :
+            estimate = "low < 5 seconds "
+      elif args.iter <= 2048 and args.parallelism <= 32 and args.blocksize <= 2048 :
+            estimate = "medium 10-20 seconds " 
+      elif args.iter <= 4096 and args.parallelism >= 32 and args.blocksize >= 1024 :
+            estimate = estimate = "high ~60 seconds    "
+      elif args.iter >= 4096 and args.parallelism >= 32 and args.blocksize >= 1024 :
+            estimate = estimate = "extream 60++ Seconds "
+      else:
+            estimate = "N/A            "
+      
+   
+   elif args.algo == "Scrypt":
+      if args.iter < 1024 and args.parallelism < 16 and args.blocksize < 512 :
+            estimate = " very low < 1 second "
+      elif args.iter <= 1024 and args.parallelism <= 16 and args.blocksize <= 512 :
+            estimate = " low < 4 second      "
+      elif args.iter <= 2048 and args.parallelism <= 16 and args.blocksize <= 512 :
+            estimate = " low < 4 second      "
+      elif args.iter <= 1024 and args.parallelism <= 16 and args.blocksize <= 1024 :
+            estimate = "low < 7 seconds "
+      elif args.iter <= 1024 and args.parallelism <= 16 and args.blocksize <= 2048 :
+            estimate = "low < 5 seconds "
+      elif args.iter <= 2048 and args.parallelism <= 32 and args.blocksize <= 2048 :
+            estimate = "medium 10-20 seconds " 
+      elif args.iter <= 4096 and args.parallelism >= 32 and args.blocksize >= 1024 :
+            estimate = estimate = "high ~60 seconds    "
+      elif args.iter >= 4096 and args.parallelism >= 32 and args.blocksize >= 1024 :
+            estimate = estimate = "extream 60++ Seconds "
+      else:
+            estimate = "N/A            "
+            
+            
+   elif args.algo == "Bcrypt":
+      if args.iter < 1024:
+            estimate = " very low ~ 2 seconds "
+      elif args.iter >= 1024 and args.iter < 2000:
+            estimate = " low  ~ 5 seconds    "      
+      elif args.iter >= 2048 and args.iter < 3500:
+            estimate = "medium ~ 10 seconds  "
+      elif args.iter >= 4096 and args.iter < 8192:
+            estimate = "high ~ 20 seconds "
+      elif args.iter > 4096:
+            estimate = "high < 60 seconds "
+      else:
+            esitmate = "N/A           "
+
+            
+   elif args.algo == "pbkdf2":
+      if args.iter < 1000000:
+            estimate = " very low < 1 second "
+      elif args.iter >= 10000000 and args.iter < 5000000:
+            estimate = " low  ~ 5 seconds    "      
+      elif args.iter >= 10000000 and args.iter < 20000000:
+            estimate = "medium ~ 10 seconds  "
+      elif args.iter >= 20000000 and args.iter < 300000000:
+            estimate = "high ~ 20 seconds "
+      elif args.iter > 300000000:
+            estimate = "high < 60 seconds "
+      else:
+            esitmate = "N/A           "
+
+            
+   elif args.algo != "":
+      for algo in algolist:
+        if algo == args.algo:
+           if args.iter < 1000000:
+            estimate = " very low < 1 second "
+           elif args.iter >= 10000000 and args.iter < 5000000:
+            estimate = " low  ~ 5 seconds    "      
+           elif args.iter >= 10000000 and args.iter < 20000000:
+            estimate = "medium ~ 10 seconds  "
+           elif args.iter >= 20000000 and args.iter < 30000000:
+            estimate = "high ~ 20 seconds "
+           elif args.iter > 30000000:
+            estimate = "high < 60 seconds    "
+           else:
+            esitmate = "N/A           "
+   else:
+      print "could not estimate time"
+        
+           
+           
+               
+   print "\n#######################################"
+   print "Estimated time : " + estimate + "#"
+   print "#######################################"
+
+
+         
 
 main()
